@@ -1256,7 +1256,7 @@ PrefabInstance:
     - target: {fileID: 7190935223674586700, guid: 980ff752fe92e427fa85306d505334e9,
         type: 3}
       propertyPath: m_Name
-      value: UI_Progress
+      value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 469016495682542804, guid: 980ff752fe92e427fa85306d505334e9,
         type: 3}

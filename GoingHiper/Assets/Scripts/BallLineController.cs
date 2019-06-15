@@ -7,6 +7,13 @@ public class BallLineController : MonoBehaviour
 {
     [SerializeField] private List<BallController> ballsLine = new List<BallController>();
     public Action WinAction;
+    private void Awake()
+    {
+        foreach (var ball in ballsLine)
+        {
+            ball.FallDown += OnBallFall;
+        }
+    }
 
     private void OnBallFall()
     {
@@ -15,12 +22,11 @@ public class BallLineController : MonoBehaviour
             if (ball.gameObject.activeInHierarchy) { return; }
         }
 
-        Debug.Log("WIN");
-
         if (WinAction != null)
         {
             WinAction();
-        } 
+        }
+        MessageController.Instance.GameWinEvent();
     }
 
 }

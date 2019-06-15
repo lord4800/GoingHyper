@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ public class BallController : MonoBehaviour
     [SerializeField] private Animator animator;
     private bool move;
     private Vector3 currentMoveVector;
+
+    public Action FallDown;
+    public Action GameOverEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -51,11 +55,19 @@ public class BallController : MonoBehaviour
     public void FallDownEvent()
     {
         gameObject.SetActive(false);
+        if (FallDown != null)
+            FallDown();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Rotate")
+        if (other.tag == "Finish")
+        {
+            if (GameOverEvent != null)
+                GameOverEvent();
+            MessageController.Instance.GameOverEvent();
+        }
+        else if (other.tag != "Rotate")
         {
             move = false;
             animator.Play("ball_fall");
