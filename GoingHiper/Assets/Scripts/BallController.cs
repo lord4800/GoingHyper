@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private float TURNOFF_Y = 0f;
     [SerializeField] private Vector3 moveVector;
+    [SerializeField] private Animator animator;
     private bool move;
 
     // Start is called before the first frame update
@@ -18,15 +19,22 @@ public class BallController : MonoBehaviour
     void Update()
     {
         UpdatePosition();
-        if (gameObject.active && transform.position.y < TURNOFF_Y)
-        {
-            gameObject.SetActive(false);
-        }
     }
 
     public void Rotate(bool isLeft)
     {
         //RotateVector
+    }
+
+    public void FallEffect()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        move = false;
+        animator.Play("ball_fall");
     }
 
     private void UpdatePosition()

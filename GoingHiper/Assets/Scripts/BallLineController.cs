@@ -14,6 +14,9 @@ public class BallLineController : MonoBehaviour
         {
             if (ball.gameObject.activeInHierarchy) { return; }
         }
+
+        Debug.Log("WIN");
+
         if (WinAction != null)
         {
             WinAction();
