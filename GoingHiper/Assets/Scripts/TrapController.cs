@@ -8,6 +8,7 @@ public class TrapController : MonoBehaviour
 
     private Animator animator;
     private Rigidbody rigidbody;
+    private Collider collider;
 
     // Start is called before the first frame update
     void Start()
@@ -19,23 +20,24 @@ public class TrapController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
     }
 
     public void ActivateTrap()
     {
         animator.Play("push_trap_anim");
     }
-
+    
     public void PhysicOn()
     {
         rigidbody.isKinematic = false;
-        StartCoroutine(WaitPhysics());
         //Add tonque
     }
 
-    IEnumerator WaitPhysics()
+    void OnCollisionEnter(Collision collision)
     {
-        yield return new WaitForFixedUpdate();
-        rigidbody.AddForce(fallVec, ForceMode.Impulse);
+        ///if (collision.contacts[0].otherCollider.tag == "Ball")
+           // collider.enabled = false;
     }
+
 }

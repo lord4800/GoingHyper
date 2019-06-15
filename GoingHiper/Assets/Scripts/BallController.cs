@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    [SerializeField] private float TURNOFF_Y = 0f;
     [SerializeField] private Vector3 moveVector;
     private bool move;
 
@@ -17,6 +18,10 @@ public class BallController : MonoBehaviour
     void Update()
     {
         UpdatePosition();
+        if (gameObject.active && transform.position.y < TURNOFF_Y)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void Rotate(bool isLeft)
