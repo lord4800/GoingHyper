@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrapController : MonoBehaviour
 {
-    [SerializeField] private Vector3 fallVec;
+    [SerializeField] private bool isHorizontal;
 
     private Animator animator;
     private Rigidbody rigidbody;
@@ -25,7 +25,10 @@ public class TrapController : MonoBehaviour
 
     public void ActivateTrap()
     {
-        animator.Play("push_trap_anim");
+        if (isHorizontal)
+            animator.Play("push_trap_anim_horizontal");
+        else
+            animator.Play("push_trap_anim");
     }
 
     public void FallDownEvent()
