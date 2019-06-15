@@ -11,6 +11,7 @@ public class TrapManager : MonoBehaviour
     void Start()
     {
         trapId = 0;
+        traps[trapId].SetActive(true);
     }
 
     // Update is called once per frame
@@ -25,6 +26,8 @@ public class TrapManager : MonoBehaviour
         {
             traps[trapId].ActivateTrap();
             trapId++;
+            if (traps.Count > trapId)
+                traps[trapId].SetActive(true);
         }
     }
 }
