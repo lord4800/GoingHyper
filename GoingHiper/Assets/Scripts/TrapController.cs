@@ -27,17 +27,9 @@ public class TrapController : MonoBehaviour
     {
         animator.Play("push_trap_anim");
     }
-    
-    public void PhysicOn()
-    {
-        rigidbody.isKinematic = false;
-        //Add tonque
-    }
 
-    void OnCollisionEnter(Collision collision)
+    public void FallDownEvent()
     {
-        ///if (collision.contacts[0].otherCollider.tag == "Ball")
-           // collider.enabled = false;
+        gameObject.SetActive(false);
     }
-
 }

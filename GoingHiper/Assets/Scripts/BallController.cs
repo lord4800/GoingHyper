@@ -26,7 +26,7 @@ public class BallController : MonoBehaviour
         //RotateVector
     }
 
-    public void FallEffect()
+    public void FallDownEvent()
     {
         gameObject.SetActive(false);
     }
