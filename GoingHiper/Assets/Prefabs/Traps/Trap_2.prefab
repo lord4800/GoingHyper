@@ -94,6 +94,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHorizontal: 0
+  idleMat: {fileID: 2100000, guid: 5f9bd1afe2e49d24b812c25f8561a725, type: 2}
+  activeMat: {fileID: 2100000, guid: b653d050fbb1e314a9d423155537a3b1, type: 2}
+  renderer: {fileID: 1212508252360793472}
 --- !u!65 &1212508252360793473
 BoxCollider:
   m_ObjectHideFlags: 0
