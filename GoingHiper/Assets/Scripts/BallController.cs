@@ -8,7 +8,8 @@ public class BallController : MonoBehaviour
     {
         Left,
         Right,
-        Forward
+        Forward,
+        Backward
     }
 
     [SerializeField] private float TURNOFF_Y = 0f;
@@ -34,11 +35,16 @@ public class BallController : MonoBehaviour
     {
         //RotateVector
         Vector3 temp = moveVector;
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Round(transform.position.x);
+        pos.z = Mathf.Round(transform.position.z);
+        transform.position = pos;
         switch (vectorType)
         {
             case VectorType.Forward: { currentMoveVector = new Vector3(0, 0, temp.z); break; }
             case VectorType.Left: { currentMoveVector = new Vector3(-temp.z, 0, 0); break; }
             case VectorType.Right: { currentMoveVector = new Vector3(temp.z, 0, 0); break; }
+            case VectorType.Backward: { currentMoveVector = new Vector3(0, 0, -temp.z); break; }
         }
     }
 
