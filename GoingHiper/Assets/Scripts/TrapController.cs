@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class TrapController : MonoBehaviour
 {
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Init()
     {
-        
+        animator = GetComponent<Animator>();
+    }
+
+    public void ActivateTrap()
+    {
+        animator.Play("");
     }
 }
