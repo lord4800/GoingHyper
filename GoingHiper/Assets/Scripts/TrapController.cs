@@ -5,14 +5,18 @@ using UnityEngine;
 public class TrapController : MonoBehaviour
 {
     [SerializeField] private bool isHorizontal;
-    [SerializeField] private Material idleMat;
-    [SerializeField] private Material activeMat;
+    [SerializeField] private Material idleYellowMat;
+    [SerializeField] private Material activeYellowMat;
+    [SerializeField] private Material idleBlackMat;
+    [SerializeField] private Material activeBlackMat;
     [SerializeField] private Renderer renderer;
+    [SerializeField] private BallController.ColorType colorType = BallController.ColorType.Yellow;
 
     private Animator animator;
     private Rigidbody rigidbody;
     private Collider collider;
     
+    public BallController.ColorType ColorType { get { return colorType; } }
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +33,7 @@ public class TrapController : MonoBehaviour
 
     public void SetActive(bool isActive)
     {
-        renderer.material = isActive ? activeMat : idleMat;
+        renderer.material = colorType == BallController.ColorType.Yellow ? (isActive ? activeYellowMat : idleYellowMat) : (isActive ? activeBlackMat : idleBlackMat);
     }
 
     public void ActivateTrap()

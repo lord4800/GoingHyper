@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1036990626227850694}
   - component: {fileID: 6571615109729599238}
   m_Layer: 0
-  m_Name: Trap_1
+  m_Name: Trap_vertical_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,9 +94,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHorizontal: 0
-  idleMat: {fileID: 2100000, guid: 5f9bd1afe2e49d24b812c25f8561a725, type: 2}
-  activeMat: {fileID: 2100000, guid: b653d050fbb1e314a9d423155537a3b1, type: 2}
+  idleYellowMat: {fileID: 2100000, guid: 5f9bd1afe2e49d24b812c25f8561a725, type: 2}
+  activeYellowMat: {fileID: 2100000, guid: b653d050fbb1e314a9d423155537a3b1, type: 2}
+  idleBlackMat: {fileID: 2100000, guid: bccc20dc53046c94685803bb70c1e208, type: 2}
+  activeBlackMat: {fileID: 2100000, guid: 3021fb42ec96ec2479cbc4ac814b7c1c, type: 2}
   renderer: {fileID: 1212508252360793472}
+  colorType: 0
 --- !u!65 &1212508252360793473
 BoxCollider:
   m_ObjectHideFlags: 0

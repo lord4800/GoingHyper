@@ -95,6 +95,9 @@ MonoBehaviour:
   TURNOFF_Y: 0
   moveVector: {x: 0, y: 0, z: 5}
   animator: {fileID: 2925430875524518930}
+  yellowMat: {fileID: 2100000, guid: aa46b5a0bf86d2c43acb2b2cee290d39, type: 2}
+  blackMat: {fileID: 2100000, guid: c44cec0b9d0b3f64fb3711343cd01854, type: 2}
+  colorType: 0
 --- !u!135 &4059250492464998128
 SphereCollider:
   m_ObjectHideFlags: 0

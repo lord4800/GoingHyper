@@ -13,9 +13,19 @@ public class BallController : MonoBehaviour
         Backward
     }
 
+    public enum ColorType
+    {
+        Yellow,
+        Black
+    }
+
     [SerializeField] private float TURNOFF_Y = 0f;
     [SerializeField] private Vector3 moveVector;
     [SerializeField] private Animator animator;
+    [SerializeField] private Material yellowMat;
+    [SerializeField] private Material blackMat;
+    [SerializeField] private ColorType colorType = ColorType.Yellow;
+
     private bool move;
     private Vector3 currentMoveVector;
 
@@ -27,6 +37,8 @@ public class BallController : MonoBehaviour
     {
         move = true;
         Rotate(VectorType.Forward);
+        if (colorType == ColorType.Black)
+            GetComponent<Renderer>().material = blackMat;
     }
 
     // Update is called once per frame
@@ -61,26 +73,31 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Finish")
+        switch (other.tag)
         {
-            if (GameOverEvent != null)
-                GameOverEvent();
-            MessageController.Instance.GameOverEvent();
-        } else if (other.tag == "SwitchCamera")
-            {
-            //nothing , maybe stop
+            case "Finish": Finish(); break;
+            case "SwitchCamera": break;
+            case "Rotate": Rotate(other.GetComponent<Rotate>().VectorType); break;
+            default: DropDown(other); break;
         }
-        else if (other.tag != "Rotate")
+    }
+
+    private void Finish()
+    {
+        if (GameOverEvent != null)
+            GameOverEvent();
+        MessageController.Instance.GameOverEvent();
+    }
+
+    private void DropDown(Collider other)
+    {
+        if (colorType == other.GetComponent<TrapController>().ColorType)
         {
             move = false;
             if (currentMoveVector.z == 0)
                 animator.Play("ball_fall_horizontal");
             else
                 animator.Play("ball_fall");
-        }
-        else
-        {
-            Rotate(other.GetComponent<Rotate>().VectorType);
         }
     }
 
