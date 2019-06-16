@@ -243,6 +243,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Traps_Path_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3832003281600182614, guid: 82b07ecf82966b64a8f3a0c75cc95695,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3832003281600182613, guid: 82b07ecf82966b64a8f3a0c75cc95695,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -673,7 +678,7 @@ PrefabInstance:
     - target: {fileID: 1743819404385014088, guid: 6556ac09f7b9484478af36b7d5a7aabd,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1743819404385014091, guid: 6556ac09f7b9484478af36b7d5a7aabd,
         type: 3}
@@ -1033,7 +1038,7 @@ PrefabInstance:
     - target: {fileID: 3339666857311693984, guid: aa15cc3578669444ab383ca8075d45f9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3339666857311693985, guid: aa15cc3578669444ab383ca8075d45f9,
         type: 3}

@@ -22,6 +22,11 @@ public class BallController : MonoBehaviour
     public Action FallDown;
     public Action GameOverEvent;
 
+    private const float MAX_Z = 120;
+    private const float MIN_Z = -50;
+    private const float MAX_X = 20;
+    private const float MIN_X = -40;
+
     [SerializeField] private float TURNOFF_Y = 0f;
     [SerializeField] private Vector3 moveVector;
     [SerializeField] private Animator animator;
@@ -135,6 +140,11 @@ public class BallController : MonoBehaviour
         if (move)
         {
             transform.position += currentMoveVector * Time.deltaTime;
+            if (transform.position.x > MAX_X || transform.position.x < MIN_X || transform.position.z > MAX_Z || transform.position.z < MIN_Z)
+            {
+                StopMove();
+                FallDownEvent();
+            }
         }
     }
 }
