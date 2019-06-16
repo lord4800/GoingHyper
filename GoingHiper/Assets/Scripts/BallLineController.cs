@@ -2,10 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class BallLineController : MonoBehaviour
 {
     public Action WinAction;
+
+    [SerializeField] private GameObject ballPrefab;
+    [SerializeField] private Vector3 startPoint;
+    [SerializeField] private float distanceBetween;
+    [SerializeField] private int numbers;
+
+    [ContextMenu("CreateBalls")]
+    void SetUpBalls()
+    {
+        for (int i = 0; i < ballsLine.Count; i++)
+        {
+            DestroyImmediate(ballsLine[i].gameObject);
+        }
+        ballsLine.Clear();
+        for (int i = 0; i < numbers; i++)
+        {
+            GameObject newBall = PrefabUtility.InstantiatePrefab(ballPrefab as GameObject) as GameObject;
+            newBall.transform.position = startPoint - new Vector3(0, 0, 1) * distanceBetween*i;
+            ballsLine.Add(newBall.GetComponent<BallController>());
+        }
+    }
 
     [SerializeField] private List<BallController> ballsLine = new List<BallController>();
 

@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
     static public CameraManager Instance { get { return instance; } }
 
     [SerializeField] private List<Transform> cameraPos = new List<Transform>();
+    [SerializeField] private List<GameObject> TrapsManagers = new List<GameObject>();
     [SerializeField] private float toPosTime = 2f;
 
     private int cameraID;
@@ -20,9 +21,12 @@ public class CameraManager : MonoBehaviour
 
     public void SwitchCamera()
     {
+        TrapsManagers[cameraID].SetActive(false);
         targetPos = cameraPos[cameraID].position;
         StartCoroutine(ToNewPositionCoroutine());
         cameraID++;
+        if (cameraID < TrapsManagers.Count)
+        TrapsManagers[cameraID].SetActive(true);
     }
 
     IEnumerator ToNewPositionCoroutine()
