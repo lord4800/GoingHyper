@@ -46,10 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa151a8f850c0340a2cad29cece5ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 0}
+  startPoint: {x: 0, y: 0, z: 0}
+  distanceBetween: 0
+  numbers: 3
   ballsLine:
   - {fileID: 8007092258112441773}
   - {fileID: 6290329304601087622}
   - {fileID: 6290329304168137247}
+  waitBalls: []
 --- !u!1001 &6290329304067091281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 4059250492464998131, guid: f2ac1af4cd5bce443b2ecdd3f6ee3f33,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.5
+      value: -26.91
       objectReference: {fileID: 0}
     - target: {fileID: 4059250492464998131, guid: f2ac1af4cd5bce443b2ecdd3f6ee3f33,
         type: 3}
@@ -249,7 +254,7 @@ PrefabInstance:
     - target: {fileID: 4059250492464998131, guid: f2ac1af4cd5bce443b2ecdd3f6ee3f33,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.5
+      value: -31.37
       objectReference: {fileID: 0}
     - target: {fileID: 4059250492464998131, guid: f2ac1af4cd5bce443b2ecdd3f6ee3f33,
         type: 3}

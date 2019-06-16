@@ -29,6 +29,7 @@ public class TrapController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
+        SetActive(false);
     }
 
     public void SetActive(bool isActive)
