@@ -27,7 +27,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Material yellowMat;
     [SerializeField] private Material blackMat;
-    [SerializeField] private ColorType colorType = ColorType.Yellow;
+    [SerializeField] public ColorType colorType = ColorType.Yellow;
     [SerializeField] private float distanceBetween;
     [SerializeField] public BallController forwardBall;
     [SerializeField] public BallController backwardBall;

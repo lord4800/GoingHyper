@@ -18,16 +18,19 @@ public class BallLineController : MonoBehaviour
     [ContextMenu("CreateBalls")]
     void SetUpBalls()
     {
+#if UNITY_EDITOR
         for (int i = 0; i < ballsLine.Count; i++)
         {
             DestroyImmediate(ballsLine[i].gameObject);
         }
+#endif
         ballsLine.Clear();
         for (int j = 0; j < numbers; j++)
         {
             GameObject newBall = PrefabUtility.InstantiatePrefab(ballPrefab as GameObject) as GameObject;
             newBall.transform.position = startPoint - new Vector3(0, 0, 1) * distanceBetween*j;
             newBall.transform.SetParent(transform);
+            newBall.GetComponent<BallController>().colorType = UnityEngine.Random.Range(0, 2) == 0 ? BallController.ColorType.Yellow : BallController.ColorType.Black;
             ballsLine.Add(newBall.GetComponent<BallController>());
         }
     }
