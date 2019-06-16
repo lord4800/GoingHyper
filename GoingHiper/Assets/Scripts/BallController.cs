@@ -46,8 +46,7 @@ public class BallController : MonoBehaviour
     {
         StartMove();
         Rotate(VectorType.Forward);
-        if (colorType == ColorType.Black)
-            GetComponent<Renderer>().material = blackMat;
+        GetComponent<Renderer>().material = colorType == ColorType.Black ? blackMat : yellowMat; 
     }
 
     public void StartMove()

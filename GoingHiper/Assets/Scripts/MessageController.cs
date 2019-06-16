@@ -11,6 +11,7 @@ public class MessageController : MonoBehaviour
     {
         get { return instance; }
     }
+    [SerializeField] private int nextLevel;
     [SerializeField] private Text gameOverText;
     [SerializeField] private Text gameWinText;
 
@@ -34,6 +35,6 @@ public class MessageController : MonoBehaviour
     IEnumerator WaitBeforeReload()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(nextLevel);
     }
 }
