@@ -121,6 +121,7 @@ public class BallController : MonoBehaviour
         if (colorType == other.GetComponent<TrapController>().ColorType)
         {
             StopMove();
+            ballLineController.Death();
             //ballLineController.StopPartLine(this);
             if (currentMoveVector.z == 0)
                 animator.Play("ball_fall_horizontal");

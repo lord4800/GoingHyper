@@ -38,7 +38,15 @@ public class BallLineController : MonoBehaviour
     [SerializeField] private List<BallController> ballsLine = new List<BallController>();
 
     [SerializeField] private List<BallController> waitBalls;
-    
+
+    private int currentNumbers;
+
+    public void Death()
+    {
+        currentNumbers--;
+        ProgressController.Instance.ChangeValue(1 - (float)(currentNumbers) / (float)(numbers));
+    }
+
     private void Awake()
     {
         for (int i = 0; i < ballsLine.Count; i++)
@@ -55,6 +63,7 @@ public class BallLineController : MonoBehaviour
             if (i + 1 < ballsLine.Count)
                 ball.backwardBall = ballsLine[i + 1];
         }
+        currentNumbers = numbers;
     }
 
     public void StopPartLine(BallController lastBall)

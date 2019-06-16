@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class ProgressController : MonoBehaviour
 {
-    [SerializeField] Slider _slider;
+    static ProgressController instance;
+    public static ProgressController Instance { get { return instance; } }
 
-    public void ChangeMaxValue(float max)
+    [SerializeField] Image _image;
+
+    private void Awake()
     {
-        _slider.maxValue = max;
+        instance = this;
     }
 
-    public void ChangeValue(float distance)
+    public void ChangeValue(float value)
     {
-        _slider.value = distance;
+        _image.fillAmount = value;
     }
 }
