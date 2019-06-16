@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Rotate
+  - SwitchCamera
   layers:
   - Default
   - TransparentFX

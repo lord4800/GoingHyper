@@ -66,6 +66,9 @@ public class BallController : MonoBehaviour
             if (GameOverEvent != null)
                 GameOverEvent();
             MessageController.Instance.GameOverEvent();
+        } else if (other.tag == "SwitchCamera")
+            {
+            //nothing , maybe stop
         }
         else if (other.tag != "Rotate")
         {
