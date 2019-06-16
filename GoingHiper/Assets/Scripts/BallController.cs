@@ -73,7 +73,10 @@ public class BallController : MonoBehaviour
         else if (other.tag != "Rotate")
         {
             move = false;
-            animator.Play("ball_fall");
+            if (currentMoveVector.z == 0)
+                animator.Play("ball_fall_horizontal");
+            else
+                animator.Play("ball_fall");
         }
         else
         {
