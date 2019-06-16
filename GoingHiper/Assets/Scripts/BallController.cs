@@ -19,32 +19,59 @@ public class BallController : MonoBehaviour
         Black
     }
 
+    public Action FallDown;
+    public Action GameOverEvent;
+
     [SerializeField] private float TURNOFF_Y = 0f;
     [SerializeField] private Vector3 moveVector;
     [SerializeField] private Animator animator;
     [SerializeField] private Material yellowMat;
     [SerializeField] private Material blackMat;
     [SerializeField] private ColorType colorType = ColorType.Yellow;
+    [SerializeField] private float distanceBetween;
+    [SerializeField] public BallController forwardBall;
+    [SerializeField] public BallController backwardBall;
+
+    public BallLineController ballLineController;
 
     private bool move;
+    public bool checkDistance;
+    private Transform targetBall;
     private Vector3 currentMoveVector;
 
-    public Action FallDown;
-    public Action GameOverEvent;
+    public bool Wait { get { return !move; } }
 
     // Start is called before the first frame update
     void Start()
     {
-        move = true;
+        StartMove();
         Rotate(VectorType.Forward);
         if (colorType == ColorType.Black)
             GetComponent<Renderer>().material = blackMat;
+    }
+
+    public void StartMove()
+    {
+        move = true;
+        checkDistance = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdatePosition();
+        if (checkDistance)
+        {
+            if (Vector3.Distance(transform.position, forwardBall.transform.position) < distanceBetween)
+            {
+                forwardBall.StartMove();
+            }
+        }
+    }
+
+    public void StopMove()
+    {
+        move = false;
     }
 
     public void Rotate(VectorType vectorType)
@@ -93,7 +120,8 @@ public class BallController : MonoBehaviour
     {
         if (colorType == other.GetComponent<TrapController>().ColorType)
         {
-            move = false;
+            StopMove();
+            //ballLineController.StopPartLine(this);
             if (currentMoveVector.z == 0)
                 animator.Play("ball_fall_horizontal");
             else
