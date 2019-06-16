@@ -23,7 +23,7 @@ public class BallLineController : MonoBehaviour
         {
             DestroyImmediate(ballsLine[i].gameObject);
         }
-#endif
+
         ballsLine.Clear();
         for (int j = 0; j < numbers; j++)
         {
@@ -33,6 +33,7 @@ public class BallLineController : MonoBehaviour
             newBall.GetComponent<BallController>().colorType = UnityEngine.Random.Range(0, 2) == 0 ? BallController.ColorType.Yellow : BallController.ColorType.Black;
             ballsLine.Add(newBall.GetComponent<BallController>());
         }
+#endif
     }
 
     [SerializeField] private List<BallController> ballsLine = new List<BallController>();
@@ -64,6 +65,11 @@ public class BallLineController : MonoBehaviour
                 ball.backwardBall = ballsLine[i + 1];
         }
         currentNumbers = numbers;
+    }
+
+    public void Stop()
+    {
+        foreach (var ball in ballsLine) { ball.StopMove(); }
     }
 
     public void StopPartLine(BallController lastBall)

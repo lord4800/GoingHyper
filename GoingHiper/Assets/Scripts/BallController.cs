@@ -114,6 +114,7 @@ public class BallController : MonoBehaviour
         if (GameOverEvent != null)
             GameOverEvent();
         MessageController.Instance.GameOverEvent();
+        ballLineController.Stop();
     }
 
     private void DropDown(Collider other)
