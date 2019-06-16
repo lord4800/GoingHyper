@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9129458960451511898
 Transform:
   m_ObjectHideFlags: 0
@@ -57,8 +57,8 @@ MonoBehaviour:
   - {fileID: 4611893286911236493}
   - {fileID: 4611893286176428052}
   - {fileID: 4611893286668321946}
-  - {fileID: 4611893286007815820}
   - {fileID: 4611893285228951855}
+  - {fileID: 4611893286007815820}
   - {fileID: 4611893285041332476}
   - {fileID: 4611893286666302358}
   - {fileID: 4611893285352045527}
@@ -303,6 +303,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4517926331388308933, guid: f0b245e63797f3242a21e2875f0976d5,
+        type: 3}
+      propertyPath: colorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 856257577549195292, guid: f0b245e63797f3242a21e2875f0976d5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bccc20dc53046c94685803bb70c1e208, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0b245e63797f3242a21e2875f0976d5, type: 3}
 --- !u!4 &7953897186325812884 stripped
@@ -390,6 +400,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4517926331388308933, guid: 1463342a808fd8547976a02d47cc0bc0,
+        type: 3}
+      propertyPath: colorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349459565887412063, guid: 1463342a808fd8547976a02d47cc0bc0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bccc20dc53046c94685803bb70c1e208, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1463342a808fd8547976a02d47cc0bc0, type: 3}
 --- !u!4 &7953897186437691217 stripped
