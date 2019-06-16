@@ -23,10 +23,11 @@ public class BallLineController : MonoBehaviour
             DestroyImmediate(ballsLine[i].gameObject);
         }
         ballsLine.Clear();
-        for (int i = 0; i < numbers; i++)
+        for (int j = 0; j < numbers; j++)
         {
             GameObject newBall = PrefabUtility.InstantiatePrefab(ballPrefab as GameObject) as GameObject;
-            newBall.transform.position = startPoint - new Vector3(0, 0, 1) * distanceBetween*i;
+            newBall.transform.position = startPoint - new Vector3(0, 0, 1) * distanceBetween*j;
+            newBall.transform.SetParent(transform);
             ballsLine.Add(newBall.GetComponent<BallController>());
         }
     }
