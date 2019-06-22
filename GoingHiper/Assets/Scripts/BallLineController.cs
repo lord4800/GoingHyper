@@ -36,6 +36,17 @@ public class BallLineController : MonoBehaviour
 #endif
     }
 
+    [ContextMenu("PaintBalls")]
+    private void PaintBalls()
+    {
+        for (int i = 0; i < ballsLine.Count; i++)
+        {
+            BallController ball = ballsLine[i];
+            ball.PaintBall();
+        }
+    }
+
+
     [SerializeField] private List<BallController> ballsLine = new List<BallController>();
 
     [SerializeField] private List<BallController> waitBalls;
@@ -89,20 +100,6 @@ public class BallLineController : MonoBehaviour
             ballsLine[i].forwardBall = ballsLine[i - 1];
             ballsLine[i].checkDistance = true;
         }
-        /*
-         * waitBalls = new List<BallController>();
-        int lastBallID = ballsLine.IndexOf(lastBall);
-        Debug.Log("lastBallID " + lastBallID);
-        if (lastBallID != ballsLine.Count-1)
-        for (int i = 0; i < ballsLine.Count; i++)
-        {
-            if (i < lastBallID && !ballsLine[i].Wait)
-            {
-                waitBalls.Add(ballsLine[i]);
-                ballsLine[i].StopMove();
-            }
-        }
-        */
     }
 
     public void StartPartLine()
