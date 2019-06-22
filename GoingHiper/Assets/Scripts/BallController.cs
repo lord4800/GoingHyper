@@ -10,7 +10,9 @@ public class BallController : MonoBehaviour
         Left,
         Right,
         Forward,
-        Backward
+        Backward,
+        Finish,
+        SwitchScreen
     }
 
     public enum ColorType
@@ -26,6 +28,7 @@ public class BallController : MonoBehaviour
     private const float MIN_Z = -50;
     private const float MAX_X = 20;
     private const float MIN_X = -40;
+    private const float SPEED = 5f;
 
     [SerializeField] private float TURNOFF_Y = 0f;
     [SerializeField] private Vector3 moveVector;
@@ -36,6 +39,8 @@ public class BallController : MonoBehaviour
     [SerializeField] private float distanceBetween;
     [SerializeField] public BallController forwardBall;
     [SerializeField] public BallController backwardBall;
+
+    [SerializeField] private SwitchNode currentGoal;
 
     public BallLineController ballLineController;
 
@@ -50,7 +55,7 @@ public class BallController : MonoBehaviour
     void Start()
     {
         StartMove();
-        Rotate(VectorType.Forward);
+        currentMoveVector = new Vector3(0, 0, 1);
     }
 
     public void PaintBall()
@@ -68,13 +73,18 @@ public class BallController : MonoBehaviour
     void Update()
     {
         UpdatePosition();
-        if (checkDistance)
+        Debug.Log("Distance " + Vector3.Distance(transform.position, currentGoal.GoalPos));
+        if (Vector3.Distance(transform.position, currentGoal.GoalPos) < 0.6f)
+        {
+            Rotate(currentGoal);
+        }
+        /*if (checkDistance)
         {
             if (Vector3.Distance(transform.position, forwardBall.transform.position) < distanceBetween)
             {
                 forwardBall.StartMove();
             }
-        }
+        }*/
     }
 
     public void StopMove()
@@ -82,20 +92,26 @@ public class BallController : MonoBehaviour
         move = false;
     }
 
-    public void Rotate(VectorType vectorType)
+    public void Rotate(SwitchNode rotate)
     {
         //RotateVector
+        Debug.Log("Switch");
         Vector3 temp = moveVector;
         Vector3 pos = transform.position;
         pos.x = Mathf.Round(transform.position.x);
         pos.z = Mathf.Round(transform.position.z);
         transform.position = pos;
-        switch (vectorType)
+        switch (rotate.VectorType)
         {
-            case VectorType.Forward: { currentMoveVector = new Vector3(0, 0, temp.z); break; }
-            case VectorType.Left: { currentMoveVector = new Vector3(-temp.z, 0, 0); break; }
-            case VectorType.Right: { currentMoveVector = new Vector3(temp.z, 0, 0); break; }
-            case VectorType.Backward: { currentMoveVector = new Vector3(0, 0, -temp.z); break; }
+            case VectorType.Finish: Finish(); break;
+            case VectorType.SwitchScreen: rotate.SwitchCam(); break;
+            case VectorType.Backward:
+            case VectorType.Forward:
+            case VectorType.Left:
+            case VectorType.Right:
+                currentMoveVector = (rotate.NextGoal.GoalPos - pos).normalized;
+                currentGoal = rotate.NextGoal;
+                break;
         }
     }
 
@@ -108,13 +124,13 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        DropDown(other);
+        /*
         switch (other.tag)
         {
-            case "Finish": Finish(); break;
-            case "SwitchCamera": break;
-            case "Rotate": Rotate(other.GetComponent<Rotate>().VectorType); break;
+            case "Rotate": Rotate(other.GetComponent<SwitchNode>()); break;
             default: DropDown(other); break;
-        }
+        }*/
     }
 
     private void Finish()
@@ -143,12 +159,7 @@ public class BallController : MonoBehaviour
     {
         if (move)
         {
-            transform.position += currentMoveVector * Time.deltaTime;
-            if (transform.position.x > MAX_X || transform.position.x < MIN_X || transform.position.z > MAX_Z || transform.position.z < MIN_Z)
-            {
-                StopMove();
-                FallDownEvent();
-            }
+            transform.position += currentMoveVector * SPEED * Time.deltaTime;
         }
     }
 }
