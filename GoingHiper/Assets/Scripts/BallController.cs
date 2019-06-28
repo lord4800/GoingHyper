@@ -36,7 +36,6 @@ public class BallController : MonoBehaviour
     [SerializeField] private Material yellowMat;
     [SerializeField] private Material blackMat;
     [SerializeField] public ColorType colorType = ColorType.Yellow;
-    [SerializeField] private float distanceBetween;
     [SerializeField] public BallController forwardBall;
     [SerializeField] public BallController backwardBall;
 
@@ -74,21 +73,16 @@ public class BallController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void UpdateBall(BallController nextBall = null)
+    public void UpdateBall(BallController nextBall = null, BallController previousBall = null)
     {
         if (!isActiveAndEnabled) return;
-        UpdatePosition(nextBall);
+
+        UpdatePosition(nextBall, previousBall);
+
         if (CheckTakeGoal())
         {
             Rotate(currentGoal);
         }
-        /*if (checkDistance)
-        {
-            if (Vector3.Distance(transform.position, forwardBall.transform.position) < distanceBetween)
-            {
-                forwardBall.StartMove();
-            }
-        }*/
     }
 
     private bool CheckTakeGoal()
@@ -183,30 +177,35 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void UpdatePosition(BallController nextBall = null)
+    private void UpdatePosition(BallController nextBall = null, BallController previousBall = null)
     {
         if (move)
         {
-            if (nextBall != null && nextBall.Goal == currentGoal)
+            //if (previousBall != null && previousBall.Goal == currentGoal && Vector3.Distance(previousBall.transform.position, transform.position) > 1.4f)
+            //    return;
+            //else
+            if (nextBall != null && nextBall.Goal == currentGoal && Vector3.Distance(nextBall.transform.position, transform.position) < 1.5f)
             {
                 switch (currentVectorType)
                 {
                     case VectorType.Forward:
-                        transform.position = nextBall.transform.position - Vector3.forward;
+                        transform.position = nextBall.transform.position - Vector3.forward * 1.25f;
                         break;
                     case VectorType.Backward:
-                        transform.position = nextBall.transform.position - Vector3.back;
+                        transform.position = nextBall.transform.position - Vector3.back * 1.25f;
                         break;
                     case VectorType.Right:
-                        transform.position = nextBall.transform.position - Vector3.right;
+                        transform.position = nextBall.transform.position - Vector3.right * 1.25f;
                         break;
                     case VectorType.Left:
-                        transform.position = nextBall.transform.position - Vector3.left;
+                        transform.position = nextBall.transform.position - Vector3.left * 1.25f;
                         break;
                 }
             }
             else
+            {
                 transform.position += currentMoveVector * SPEED * Time.deltaTime;
+            }
         }
     }
 }

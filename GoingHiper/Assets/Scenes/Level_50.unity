@@ -242,6 +242,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Traps_Path_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3832003281600182614, guid: 82b07ecf82966b64a8f3a0c75cc95695,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3832003281600182613, guid: 82b07ecf82966b64a8f3a0c75cc95695,
         type: 3}
       propertyPath: m_LocalPosition.x

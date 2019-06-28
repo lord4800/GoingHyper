@@ -126,10 +126,9 @@ public class BallLineController : MonoBehaviour
         {
             ballsLine[0].UpdateBall();
             if (ballsLine.Count > 1)
-                for (int i = 1; i < ballsLine.Count; i++)
+                for (int i = 1; i < ballsLine.Count-1; i++)
                 {
-                    BallController ball = ballsLine[i];
-                    ball.UpdateBall(ballsLine[i - 1]);
+                    ballsLine[i].UpdateBall(ballsLine[i - 1], ballsLine[i + 1]);
                 }
         }
     }
