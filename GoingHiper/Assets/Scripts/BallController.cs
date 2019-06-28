@@ -73,11 +73,11 @@ public class BallController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void UpdateBall(BallController nextBall = null, BallController previousBall = null)
+    public void UpdateBall( BallController previousBall = null)
     {
         if (!isActiveAndEnabled) return;
 
-        UpdatePosition(nextBall, previousBall);
+        UpdatePosition(previousBall);
 
         if (CheckTakeGoal())
         {
@@ -177,29 +177,37 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void UpdatePosition(BallController nextBall = null, BallController previousBall = null)
+    private void UpdatePosition( BallController previousBall = null)
     {
         if (move)
         {
-            //if (previousBall != null && previousBall.Goal == currentGoal && Vector3.Distance(previousBall.transform.position, transform.position) > 1.4f)
-            //    return;
-            //else
-            if (nextBall != null && nextBall.Goal == currentGoal && Vector3.Distance(nextBall.transform.position, transform.position) < 1.5f)
+            if (previousBall != null )
             {
-                switch (currentVectorType)
+                if (previousBall.Goal == currentGoal)
                 {
-                    case VectorType.Forward:
-                        transform.position = nextBall.transform.position - Vector3.forward * 1.25f;
-                        break;
-                    case VectorType.Backward:
-                        transform.position = nextBall.transform.position - Vector3.back * 1.25f;
-                        break;
-                    case VectorType.Right:
-                        transform.position = nextBall.transform.position - Vector3.right * 1.25f;
-                        break;
-                    case VectorType.Left:
-                        transform.position = nextBall.transform.position - Vector3.left * 1.25f;
-                        break;
+                    if (Vector3.Distance(previousBall.transform.position, transform.position) < 1.25f)
+                        switch (currentVectorType)
+                        {
+                            case VectorType.Forward:
+                                transform.position = previousBall.transform.position + Vector3.forward * 1.25f;
+                                break;
+                            case VectorType.Backward:
+                                transform.position = previousBall.transform.position + Vector3.back * 1.25f;
+                                break;
+                            case VectorType.Right:
+                                transform.position = previousBall.transform.position + Vector3.right * 1.25f;
+                                break;
+                            case VectorType.Left:
+                                transform.position = previousBall.transform.position + Vector3.left * 1.25f;
+                                break;
+                        }
+                    else
+                        return;
+                }
+                else
+                {
+                    if (Vector3.Distance(previousBall.transform.position, transform.position) < 1.3f)
+                        transform.position += currentMoveVector * SPEED * Time.deltaTime;
                 }
             }
             else
