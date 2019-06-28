@@ -14,6 +14,11 @@ public class TrapManager : MonoBehaviour
         traps[trapId].SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        traps[0].SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
