@@ -23,7 +23,7 @@ public class BallLineController : MonoBehaviour
         for (int j = 0; j < numbers; j++)
         {
             GameObject newBall = PrefabUtility.InstantiatePrefab(ballPrefab as GameObject) as GameObject;
-            newBall.transform.position = startPoint - new Vector3(0, 0, 1) * distanceBetween*j;
+            newBall.transform.position = startPoint - new Vector3(0, 0, 1) * distanceBetween * j;
             newBall.transform.SetParent(transform);
             newBall.GetComponent<BallController>().colorType = UnityEngine.Random.Range(0, 2) == 0 ? BallController.ColorType.Yellow : BallController.ColorType.Black;
             ballsLine.Add(newBall.GetComponent<BallController>());
@@ -48,9 +48,10 @@ public class BallLineController : MonoBehaviour
 
     private int currentNumbers;
 
-    public void Death()
+    public void Death(BallController ball)
     {
         currentNumbers--;
+        ballsLine.Remove(ball);
         ProgressController.Instance.ChangeValue(1 - (float)(currentNumbers) / (float)(numbers));
     }
 
@@ -119,4 +120,17 @@ public class BallLineController : MonoBehaviour
         MessageController.Instance.GameWinEvent();
     }
 
+    private void Update()
+    {
+        if (ballsLine.Count > 0)
+        {
+            ballsLine[0].UpdateBall();
+            if (ballsLine.Count > 1)
+                for (int i = 1; i < ballsLine.Count; i++)
+                {
+                    BallController ball = ballsLine[i];
+                    ball.UpdateBall(ballsLine[i - 1]);
+                }
+        }
+    }
 }

@@ -48,6 +48,9 @@ public class BallController : MonoBehaviour
     public bool checkDistance;
     private Transform targetBall;
     private Vector3 currentMoveVector;
+    private VectorType currentVectorType;
+
+    public SwitchNode Goal { get { return currentGoal; } }
 
     public bool Wait { get { return !move; } }
 
@@ -56,6 +59,7 @@ public class BallController : MonoBehaviour
     {
         StartMove();
         currentMoveVector = new Vector3(0, 0, 1);
+        currentVectorType = VectorType.Forward;
     }
 
     public void PaintBall()
@@ -70,10 +74,11 @@ public class BallController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateBall(BallController nextBall = null)
     {
-        UpdatePosition();
-        if (Vector3.Distance(transform.position, currentGoal.GoalPos) < 5f * Time.deltaTime)
+        if (!isActiveAndEnabled) return;
+        UpdatePosition(nextBall);
+        if (CheckTakeGoal())
         {
             Rotate(currentGoal);
         }
@@ -84,6 +89,26 @@ public class BallController : MonoBehaviour
                 forwardBall.StartMove();
             }
         }*/
+    }
+
+    private bool CheckTakeGoal()
+    {
+        switch (currentVectorType)
+        {
+            case VectorType.Forward:
+                return transform.position.z > currentGoal.GoalPos.z;
+                break;
+            case VectorType.Backward:
+                return transform.position.z < currentGoal.GoalPos.z;
+                break;
+            case VectorType.Right:
+                return transform.position.x > currentGoal.GoalPos.x;
+                break;
+            case VectorType.Left:
+                return transform.position.x < currentGoal.GoalPos.x;
+                break;
+        }
+        return false;
     }
 
     public void StopMove()
@@ -99,11 +124,14 @@ public class BallController : MonoBehaviour
         switch (rotate.VectorType)
         {
             case VectorType.Finish: Finish(); break;
-            case VectorType.SwitchScreen: rotate.SwitchCam(); UpdateGoal(rotate); break;
+            case VectorType.SwitchScreen: rotate.SwitchCam(); UpdateGoal(rotate);
+                currentVectorType = VectorType.Forward;
+                break;
             case VectorType.Backward:
             case VectorType.Forward:
             case VectorType.Left:
             case VectorType.Right:
+                currentVectorType = rotate.VectorType;
                 UpdateGoal(rotate);
                 break;
         }
@@ -146,7 +174,7 @@ public class BallController : MonoBehaviour
         if (colorType == other.GetComponent<TrapController>().ColorType)
         {
             StopMove();
-            ballLineController.Death();
+            ballLineController.Death(this);
             //ballLineController.StopPartLine(this);
             if (currentMoveVector.z == 0)
                 animator.Play("ball_fall_horizontal");
@@ -155,11 +183,30 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void UpdatePosition()
+    private void UpdatePosition(BallController nextBall = null)
     {
         if (move)
         {
-            transform.position += currentMoveVector * SPEED * Time.deltaTime;
+            if (nextBall != null && nextBall.Goal == currentGoal)
+            {
+                switch (currentVectorType)
+                {
+                    case VectorType.Forward:
+                        transform.position = nextBall.transform.position - Vector3.forward;
+                        break;
+                    case VectorType.Backward:
+                        transform.position = nextBall.transform.position - Vector3.back;
+                        break;
+                    case VectorType.Right:
+                        transform.position = nextBall.transform.position - Vector3.right;
+                        break;
+                    case VectorType.Left:
+                        transform.position = nextBall.transform.position - Vector3.left;
+                        break;
+                }
+            }
+            else
+                transform.position += currentMoveVector * SPEED * Time.deltaTime;
         }
     }
 }
