@@ -99,15 +99,20 @@ public class BallController : MonoBehaviour
         switch (rotate.VectorType)
         {
             case VectorType.Finish: Finish(); break;
-            case VectorType.SwitchScreen: rotate.SwitchCam(); break;
+            case VectorType.SwitchScreen: rotate.SwitchCam(); UpdateGoal(rotate); break;
             case VectorType.Backward:
             case VectorType.Forward:
             case VectorType.Left:
             case VectorType.Right:
-                currentMoveVector = (rotate.NextGoal.GoalPos - rotate.GoalPos).normalized;
-                currentGoal = rotate.NextGoal;
+                UpdateGoal(rotate);
                 break;
         }
+    }
+
+    private void UpdateGoal(SwitchNode rotate)
+    {
+        currentMoveVector = (rotate.NextGoal.GoalPos - rotate.GoalPos).normalized;
+        currentGoal = rotate.NextGoal;
     }
 
     public void FallDownEvent()

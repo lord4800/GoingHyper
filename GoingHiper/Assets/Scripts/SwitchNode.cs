@@ -13,8 +13,8 @@ public class SwitchNode : MonoBehaviour
         GoalPos = transform.position + Vector3.up * 10.5f;
     }
 
-    public void SwitchCam()
+    public virtual void SwitchCam()
     {
-        CameraManager.Instance.SwitchCamera();
+        
     }
 }
