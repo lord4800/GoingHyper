@@ -8,14 +8,13 @@ public class TrapManager : MonoBehaviour
     private int trapId;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         trapId = 0;
-        traps[trapId].SetActive(true);
-    }
-
-    private void OnEnable()
-    {
+        foreach (var trap in traps)
+        {
+            trap.Init();
+        }
         traps[0].SetActive(true);
     }
 

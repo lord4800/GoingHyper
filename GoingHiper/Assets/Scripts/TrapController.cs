@@ -19,12 +19,8 @@ public class TrapController : MonoBehaviour
     public BallController.ColorType ColorType { get { return colorType; } }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        Init();
-    }
 
-    private void Init()
+    public void Init()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
@@ -35,6 +31,7 @@ public class TrapController : MonoBehaviour
     public void SetActive(bool isActive)
     {
         renderer.material = colorType == BallController.ColorType.Yellow ? (isActive ? activeYellowMat : idleYellowMat) : (isActive ? activeBlackMat : idleBlackMat);
+        Debug.Log("Set Active " + isActive + " " + name + "Color at " + renderer.material);
     }
 
     public void ActivateTrap()
