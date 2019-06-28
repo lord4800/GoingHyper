@@ -206,7 +206,7 @@ public class BallController : MonoBehaviour
                 }
                 else
                 {
-                    if (Vector3.Distance(previousBall.transform.position, transform.position) < 1.3f)
+                    if (Vector3.Distance(previousBall.transform.position, transform.position) < 1.25f)
                         transform.position += currentMoveVector * SPEED * Time.deltaTime;
                 }
             }
