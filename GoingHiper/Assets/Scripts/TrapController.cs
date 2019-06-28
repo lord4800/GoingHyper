@@ -31,7 +31,6 @@ public class TrapController : MonoBehaviour
     public void SetActive(bool isActive)
     {
         renderer.material = colorType == BallController.ColorType.Yellow ? (isActive ? activeYellowMat : idleYellowMat) : (isActive ? activeBlackMat : idleBlackMat);
-        Debug.Log("Set Active " + isActive + " " + name + "Color at " + renderer.material);
     }
 
     public void ActivateTrap()
