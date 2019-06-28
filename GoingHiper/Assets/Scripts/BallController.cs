@@ -73,8 +73,7 @@ public class BallController : MonoBehaviour
     void Update()
     {
         UpdatePosition();
-        Debug.Log("Distance " + Vector3.Distance(transform.position, currentGoal.GoalPos));
-        if (Vector3.Distance(transform.position, currentGoal.GoalPos) < 0.6f)
+        if (Vector3.Distance(transform.position, currentGoal.GoalPos) < 5f * Time.deltaTime)
         {
             Rotate(currentGoal);
         }
@@ -95,12 +94,8 @@ public class BallController : MonoBehaviour
     public void Rotate(SwitchNode rotate)
     {
         //RotateVector
-        Debug.Log("Switch");
         Vector3 temp = moveVector;
-        Vector3 pos = transform.position;
-        pos.x = Mathf.Round(transform.position.x);
-        pos.z = Mathf.Round(transform.position.z);
-        transform.position = pos;
+        transform.position = rotate.GoalPos;
         switch (rotate.VectorType)
         {
             case VectorType.Finish: Finish(); break;
@@ -109,7 +104,7 @@ public class BallController : MonoBehaviour
             case VectorType.Forward:
             case VectorType.Left:
             case VectorType.Right:
-                currentMoveVector = (rotate.NextGoal.GoalPos - pos).normalized;
+                currentMoveVector = (rotate.NextGoal.GoalPos - rotate.GoalPos).normalized;
                 currentGoal = rotate.NextGoal;
                 break;
         }

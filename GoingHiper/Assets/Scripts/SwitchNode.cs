@@ -10,7 +10,7 @@ public class SwitchNode : MonoBehaviour
 
     private void Start()
     {
-        GoalPos = transform.position + Vector3.up * 11;
+        GoalPos = transform.position + Vector3.up * 10.5f;
     }
 
     public void SwitchCam()

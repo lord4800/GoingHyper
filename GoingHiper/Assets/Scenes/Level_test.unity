@@ -642,12 +642,102 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1785433089608598024, guid: 143d0fd6407812c4999647f172d1ba03,
+    - target: {fileID: 3460492479477936852, guid: 143d0fd6407812c4999647f172d1ba03,
         type: 3}
       propertyPath: currentGoal
       value: 
       objectReference: {fileID: 257948477}
-    - target: {fileID: 1785433087882184067, guid: 143d0fd6407812c4999647f172d1ba03,
+    - target: {fileID: 1803196109735200533, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 2290367974995942890, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 4117520049632039593, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 9016152879380995230, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 7504392398819366027, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 3626304223400138334, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 7453839960200987718, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 5237564083041415289, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 915621714264521761, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 7256353716465496521, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 785104808725980348, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 5318861332840703717, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 4771460883519825350, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 2600060922619036055, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 1963036738590479211, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 1296136310825959830, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 3115655788882708917, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 1057615822524707282, guid: 143d0fd6407812c4999647f172d1ba03,
+        type: 3}
+      propertyPath: currentGoal
+      value: 
+      objectReference: {fileID: 257948477}
+    - target: {fileID: 3649984538403300101, guid: 143d0fd6407812c4999647f172d1ba03,
         type: 3}
       propertyPath: currentGoal
       value: 

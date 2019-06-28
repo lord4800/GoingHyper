@@ -19,11 +19,6 @@ public class BallLineController : MonoBehaviour
     void SetUpBalls()
     {
 #if UNITY_EDITOR
-        for (int i = 0; i < ballsLine.Count; i++)
-        {
-            DestroyImmediate(ballsLine[i].gameObject);
-        }
-
         ballsLine.Clear();
         for (int j = 0; j < numbers; j++)
         {

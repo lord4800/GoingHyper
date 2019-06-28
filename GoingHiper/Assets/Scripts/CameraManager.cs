@@ -17,6 +17,7 @@ public class CameraManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        cameraID = 0;
     }
 
     public void SwitchCamera()
