@@ -13,11 +13,16 @@ public class CameraManager : MonoBehaviour
 
     private int cameraID;
     private Vector3 targetPos;
+    private Camera cam;
 
     void Awake()
     {
         instance = this;
         cameraID = 0;
+        cam = GetComponent<Camera>();
+        Debug.Log("screen " + (float)Screen.height / (float)Screen.width);
+        Debug.Log("size " + (13 / 1.7f) * ((float)Screen.height / (float)Screen.width));
+        cam.orthographicSize = (13 / 1.7f) * ((float)Screen.height / (float)Screen.width);
     }
 
     public void SwitchCamera()
