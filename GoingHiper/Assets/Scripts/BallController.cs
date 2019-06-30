@@ -24,27 +24,18 @@ public class BallController : MonoBehaviour
     public Action FallDown;
     public Action GameOverEvent;
 
-    private const float MAX_Z = 120;
-    private const float MIN_Z = -50;
-    private const float MAX_X = 20;
-    private const float MIN_X = -40;
     private const float SPEED = 5f;
-
-    [SerializeField] private float TURNOFF_Y = 0f;
-    [SerializeField] private Vector3 moveVector;
+    
     [SerializeField] private Animator animator;
     [SerializeField] private Material yellowMat;
     [SerializeField] private Material blackMat;
     [SerializeField] public ColorType colorType = ColorType.Yellow;
-    [SerializeField] public BallController forwardBall;
-    [SerializeField] public BallController backwardBall;
 
     [SerializeField] private SwitchNode currentGoal;
 
     public BallLineController ballLineController;
 
     private bool move;
-    public bool checkDistance;
     private Transform targetBall;
     private Vector3 currentMoveVector;
     private VectorType currentVectorType;
@@ -69,7 +60,6 @@ public class BallController : MonoBehaviour
     public void StartMove()
     {
         move = true;
-        checkDistance = false;
     }
 
     // Update is called once per frame
@@ -81,7 +71,7 @@ public class BallController : MonoBehaviour
 
         if (CheckTakeGoal())
         {
-            Rotate(currentGoal);
+            Switch(currentGoal);
         }
     }
 
@@ -110,23 +100,22 @@ public class BallController : MonoBehaviour
         move = false;
     }
 
-    public void Rotate(SwitchNode rotate)
+    public void Switch(SwitchNode switcher)
     {
         //RotateVector
-        Vector3 temp = moveVector;
-        transform.position = rotate.GoalPos;
-        switch (rotate.VectorType)
+        transform.position = switcher.GoalPos;
+        switch (switcher.VectorType)
         {
             case VectorType.Finish: Finish(); break;
-            case VectorType.SwitchScreen: rotate.SwitchCam(); UpdateGoal(rotate);
+            case VectorType.SwitchScreen: switcher.SwitchCam(); UpdateGoal(switcher);
                 currentVectorType = VectorType.Forward;
                 break;
             case VectorType.Backward:
             case VectorType.Forward:
             case VectorType.Left:
             case VectorType.Right:
-                currentVectorType = rotate.VectorType;
-                UpdateGoal(rotate);
+                currentVectorType = switcher.VectorType;
+                UpdateGoal(switcher);
                 break;
         }
     }
@@ -147,12 +136,6 @@ public class BallController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         DropDown(other);
-        /*
-        switch (other.tag)
-        {
-            case "Rotate": Rotate(other.GetComponent<SwitchNode>()); break;
-            default: DropDown(other); break;
-        }*/
     }
 
     private void Finish()
@@ -169,7 +152,6 @@ public class BallController : MonoBehaviour
         {
             StopMove();
             ballLineController.Death(this);
-            //ballLineController.StopPartLine(this);
             if (currentMoveVector.z == 0)
                 animator.Play("ball_fall_horizontal");
             else

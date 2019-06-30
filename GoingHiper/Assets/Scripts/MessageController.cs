@@ -11,6 +11,7 @@ public class MessageController : MonoBehaviour
     {
         get { return instance; }
     }
+
     [SerializeField] private int nextLevel;
     [SerializeField] private Text gameOverText;
     [SerializeField] private Text gameWinText;

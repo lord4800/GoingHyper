@@ -18,7 +18,7 @@ public class ThemeManager : MonoBehaviour
         themeID = Random.Range(0,materials.Count);
 
     }
+
     public Material Material { get { return materials[themeID]; } }
     public Sprite Sprite { get { return sprites[themeID]; } }
-
 }

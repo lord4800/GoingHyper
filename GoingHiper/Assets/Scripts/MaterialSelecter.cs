@@ -11,5 +11,4 @@ public class MaterialSelecter : MonoBehaviour
         renderer = GetComponent<Renderer>();
         renderer.material = ThemeManager.Instance.Material;
     }
-
 }

@@ -61,15 +61,7 @@ public class BallLineController : MonoBehaviour
         {
             BallController ball = ballsLine[i];
             ball.ballLineController = this;
-            if (i - 1 >= 0)
-                ball.forwardBall = ballsLine[i - 1];
             ball.FallDown += OnBallFall;
-        }
-        for (int i = 0; i < ballsLine.Count; i++)
-        {
-            BallController ball = ballsLine[i];
-            if (i + 1 < ballsLine.Count)
-                ball.backwardBall = ballsLine[i + 1];
         }
         currentNumbers = numbers;
     }
@@ -78,26 +70,7 @@ public class BallLineController : MonoBehaviour
     {
         foreach (var ball in ballsLine) { ball.StopMove(); }
     }
-
-    public void StopPartLine(BallController lastBall)
-    {
-        ballsLine.Remove(lastBall);
-        int lastBallID = ballsLine.IndexOf(lastBall);
-        if (lastBallID != ballsLine.Count - 1)
-            for (int i = 0; i < ballsLine.Count; i++)
-            {
-                if (i < lastBallID && !ballsLine[i].Wait)
-                {
-                    ballsLine[i].StopMove();
-                }
-            }
-        for (int i = 1; i < ballsLine.Count; i++)
-        {
-            ballsLine[i].forwardBall = ballsLine[i - 1];
-            ballsLine[i].checkDistance = true;
-        }
-    }
-
+    
     public void StartPartLine()
     {
         foreach (var ball in waitBalls)

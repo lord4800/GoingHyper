@@ -13,7 +13,7 @@ public class CameraManager : MonoBehaviour
 
     private int cameraID;
     private Vector3 targetPos;
-    // Start is called before the first frame update
+
     void Awake()
     {
         instance = this;
