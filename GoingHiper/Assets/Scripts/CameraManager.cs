@@ -20,8 +20,6 @@ public class CameraManager : MonoBehaviour
         instance = this;
         cameraID = 0;
         cam = GetComponent<Camera>();
-        Debug.Log("screen " + (float)Screen.height / (float)Screen.width);
-        Debug.Log("size " + (13 / 1.7f) * ((float)Screen.height / (float)Screen.width));
         cam.orthographicSize = (13 / 1.7f) * ((float)Screen.height / (float)Screen.width);
     }
 
