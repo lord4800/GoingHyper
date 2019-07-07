@@ -46,6 +46,10 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 62ca1291ef4bb3a41b6074b2ecec0569, type: 2}
   - {fileID: 2100000, guid: 6b104194ac5ad8c429cf3bb86212d95d, type: 2}
+  - {fileID: 2100000, guid: bb34f3fbf873faf418b937cb88002af7, type: 2}
+  - {fileID: 2100000, guid: 81740a867e8d3c148a0a82055da06661, type: 2}
   sprites:
   - {fileID: 21300000, guid: b7d91ef430105c24aae1289a902913d5, type: 3}
   - {fileID: 21300000, guid: 6ec4c5f0d7c3066409c4915f17999460, type: 3}
+  - {fileID: 21300000, guid: 60e586c114f658d47bc97d223e03090e, type: 3}
+  - {fileID: 21300000, guid: 525af70be0ed4324b9095f47240ead60, type: 3}

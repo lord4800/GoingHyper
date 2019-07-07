@@ -16,7 +16,6 @@ public class ThemeManager : MonoBehaviour
     {
         instance = this;
         themeID = Random.Range(0,materials.Count);
-
     }
 
     public Material Material { get { return materials[themeID]; } }
